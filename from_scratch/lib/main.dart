@@ -9,7 +9,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatefulWidget {
 
   @override
-  State<StatefulWidget> createState() {
+  State<StatefulWidget> createState() { //createState() is a method of the Stateful widget class
     return MyAppState();
   }
 }
