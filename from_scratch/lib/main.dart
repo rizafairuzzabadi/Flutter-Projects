@@ -4,32 +4,56 @@ import 'package:flutter/material.dart';
 //   runApp(const MyApp());
 // }
 
-void main() => runApp(const MyApp());
+void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
 
-  void answerQuestion(){
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp>{
+
+  var questionIndex = 0;
+  
+  void answerQuestion() {
+    setState((){
+          questionIndex = questionIndex + 1;
+    });
     print('Answer chosen!');
   }
 
-  const MyApp({super.key}); //key is a property of the stateless widget     
-
-  
   @override //a decorator. Deliberately overriding the default behavior of the build method
   Widget build(BuildContext context) {
-    var questions = ['What\'s your favorite color?', 'What\'s your favorite animal?'];
+    var questions = [
+      'What\'s your favorite color?',
+      'What\'s your favorite animal?'
+    ];
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: const Text('My First App'),
-          ),
-          body: Column(children: [
-            const Text('The question!'),
-            ElevatedButton(onPressed: answerQuestion, child: const Text('Answer 1')), 
-            ElevatedButton(onPressed: answerQuestion, child: const Text('Answer 2')),
-            ElevatedButton(onPressed: answerQuestion, child: const Text('Answer 3')),
-          ],), //Widget is a class
-          ),
+        appBar: AppBar(
+          title: const Text('My First App'),
+        ),
+        body: Column(
+          children: [
+            Text(questions.elementAt(questionIndex)), //questions[index]
+            ElevatedButton(
+                onPressed: answerQuestion, child: const Text('Answer 1')),
+            ElevatedButton(
+                onPressed: () => print('Answer 2 chosen!'),
+                child: const Text('Answer 2')),
+            ElevatedButton(
+                onPressed: () {
+                  //() is anonymous function
+                  //...
+                  print('Answer 3 chosen');
+                },
+                child: const Text('Answer 3')),
+          ],
+        ), //Widget is a class
+      ),
     ); //Scaffold is a widget that provides a basic layout
   }
 }

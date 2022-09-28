@@ -1,6 +1,6 @@
 # from_scratch
 
-A new Flutter project.
+A Basic Quiz App
 
 ## Getting Started
 
